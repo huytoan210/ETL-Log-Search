@@ -1,0 +1,399 @@
+{
+  "name": "category-classifier",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -180,
+        -80
+      ],
+      "id": "59243271-2e0c-46da-a3a0-2a1a8349ef8e",
+      "name": "When chat message received",
+      "webhookId": "fce7c112-eb60-4b5f-819b-46d6b1347b8b"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a smart classifier that receives a movie-related search keyword and classifies it into the most appropriate category from the following list:\n- Romance  \n- Action  \n- Fantasy  \n- Reality Show  \n- Crime / Thriller  \n- Horror / Supernatural  \n- Drama  \n- Comedy  \n- Historical / Costume  \n- Anime / Cartoon  \n- Medical / Legal  \n- Sci-fi  \n- Documentary  \n- Biography / Idol / Celebrity  \n- Mystery / Psychological  \nAlways return ONLY the best-fitting category name from the list above. Do not explain."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        80,
+        -80
+      ],
+      "id": "f70d61cc-7380-4336-a7b2-553b7ed6c259",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        160,
+        140
+      ],
+      "id": "b161d7b9-c9c0-4fdf-bbfa-713f2b3160a1",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -620,
+        380
+      ],
+      "id": "17dfa9c4-e97d-440c-8a0b-4b8f0d3ffdb7",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "6r1qXkATBlq1GX4T",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        -440,
+        140
+      ],
+      "id": "9cf69e80-8c3d-4f48-a222-14db6e8ce02c",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -980,
+        -60
+      ],
+      "id": "74cc5f9d-61de-4354-9bf9-8b161e2045fe",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        20,
+        140
+      ],
+      "id": "0c07708a-00d3-4dc9-875a-3dc584eb3664",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "6r1qXkATBlq1GX4T",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "### 📚 Load Data Flow",
+        "height": 440,
+        "width": 700,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1020,
+        -140
+      ],
+      "typeVersion": 1,
+      "id": "303bfaab-b8da-4ddd-b6b5-8c4eab0a07d8",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "### 🐕 2. Retriever Flow",
+        "height": 440,
+        "width": 820,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -260,
+        -140
+      ],
+      "typeVersion": 1,
+      "id": "5b7f72e5-ffe6-4acc-9bae-58233d816890",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        -620,
+        -60
+      ],
+      "id": "45f4161d-8340-4311-8076-b2e875f7cd78",
+      "name": "Insert Data to Vector Store DB"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1INUCGHYC-57znTaTpXpKmtkTm9qrCJncTg-1TqFFl4A",
+          "mode": "list",
+          "cachedResultName": "test-n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1INUCGHYC-57znTaTpXpKmtkTm9qrCJncTg-1TqFFl4A/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1INUCGHYC-57znTaTpXpKmtkTm9qrCJncTg-1TqFFl4A/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -800,
+        -60
+      ],
+      "id": "0c43468d-7732-4330-b86c-35402169b008",
+      "name": "Fetch Categories",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uShpaU5S1nm5e0Ae",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Use this tool to retrieve the category of of the search word",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        300,
+        140
+      ],
+      "id": "3eaf3f2c-83ea-4241-bdb2-d6442494b685",
+      "name": "Query Data Tool"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1INUCGHYC-57znTaTpXpKmtkTm9qrCJncTg-1TqFFl4A",
+          "mode": "list",
+          "cachedResultName": "test-n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1INUCGHYC-57znTaTpXpKmtkTm9qrCJncTg-1TqFFl4A/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1INUCGHYC-57znTaTpXpKmtkTm9qrCJncTg-1TqFFl4A/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Most_Search",
+              "displayName": "Most_Search",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        440,
+        -80
+      ],
+      "id": "bac90160-e776-418c-8584-d48195806142",
+      "name": "Append Search Word With Category",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uShpaU5S1nm5e0Ae",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Insert Data to Vector Store DB",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Query Data Tool",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Insert Data to Vector Store DB",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Fetch Categories",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Append Search Word With Category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert Data to Vector Store DB": {
+      "main": [
+        []
+      ]
+    },
+    "Fetch Categories": {
+      "main": [
+        [
+          {
+            "node": "Insert Data to Vector Store DB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query Data Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ac080c65-88ff-42e3-ba0e-55577dbaeb7f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f90bf8a3a693ed2cac95d8abab82e84b5bc11fe91c649ada50399ae7581fc0fc"
+  },
+  "id": "5tatk7fIx1Pc3OSL",
+  "tags": []
+}
