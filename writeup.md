@@ -26,8 +26,7 @@ This project aims to analyze user search behavior from log data in order to:
    - Compare June and July categories to track user interest changes
 
 3. **Load**
-   - Save results as `Category_Change.csv` or into `output_most_search/`
-   - Generate visual reports for presentations and analysis
+   - Save results as into `\output` folder
 
 ## Automated Category Labeling with n8n
 

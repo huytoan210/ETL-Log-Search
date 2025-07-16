@@ -11,6 +11,35 @@ Project to create an OLAP output with analytics-ready views. The project involve
 - Joins with keyword-category mappings
 - Compares category changes between June and July
 
+Please see [/writeup.md](./writeup.md) for an overview of the development process and [/etl-log-search.ipynb](./etl-log-search.ipynb) for an exploratory Jupyter notebook.
+
+## Instructions
+
+1. **Prerequisites**
+- Python 3.8+
+- Java 17/21 (for PySpark)
+- Install required packages:
+```
+pip install pandas openpyxl pyspark
+```
+2. **Run the Pipeline**
+```
+python etl_log_search.py
+```
+This will:
+- Load Parquet logs from `data/`
+- Analyze search trends for June and July
+- Map keywords to categories
+- Compare changes in user preferences
+Save the result to `output/` folder in CSV format
+
+3. **Optional: Use n8n for Auto Mapping**
+- Import `category-mapping.json` into your local n8n instance
+- Connect it to your OpenAI API credentials and Google credentials
+- Use the manual trigger to fetch the keywords
+- Use the chat trigger to classify new search keywords
+- Results will be appended to your Google Sheet
+
 # Folder Structure
 
 - `etl-log-search.ipynb`: Jupyter Notebook containing the discovery phase of this project: loading, inspecting, transforming
