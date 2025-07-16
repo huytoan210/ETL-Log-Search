@@ -38,7 +38,7 @@ The `category-mapping.json` workflow enables:
 
 ## Key Results
 
-- ~45.8% of users **did not change** their content category across months
+- **45.83%** of users maintained the same content category across June and July (No Change), indicating a large portion of stable user interests.
 - Most common category shifts include:
   - `Drama → Romance`
   - `Romance → Historical / Costume`
@@ -46,7 +46,11 @@ The `category-mapping.json` workflow enables:
 ## Insights
 
 - Some genres (e.g., **Romance**, **Anime / Cartooon**) show high stability
-- The method can help build **recommendation systems** or forecast trends per user segment
+- Comparing the **bar charts** of June vs. July:
+   - **Romance** consistently ranks highest in both months, confirming its dominant appeal.
+   - Categories like **Fantasy** and **Drama** slightly gained traction, while **Comedy**, **Sports/News**, and **Medical/Legal** remained less popular.
+- The fact that **54.17%** of users changed their search focus suggests that:
+   - Recommendations should adapt month-over-month.
 
 ## Recommendations for Extension
 
